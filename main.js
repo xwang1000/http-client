@@ -1,4 +1,4 @@
-var http = require('http')
+var https = require('https')
 
 function getAndPrintHTMLChunks () {
 
@@ -7,7 +7,7 @@ function getAndPrintHTMLChunks () {
     path: '/http-examples/step1.html'
   };
 
-  http.get(requestOptions, function (res) {
+  https.get(requestOptions, function (res) {
     res.setEncoding('utf8')
     res.on('data', function (data) {
       console.log(data)
