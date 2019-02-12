@@ -1,7 +1,6 @@
 var https = require('https')
 
-function getAndPrintHTML(options) {
-  
+function getHTML (options, callback) {
   https.get(options, function (response) {
     let dataArray = []
     response.setEncoding('utf8')
@@ -11,14 +10,20 @@ function getAndPrintHTML(options) {
     })
     
     response.on('end', function () {
-      console.log(dataArray)
+      callback(dataArray)
       console.log('Response stream complete.')
     })
   })
+
 }
 
-const requestOptions = {
+function printHTML (html) {
+  console.log(html);
+}
+
+var requestOptions = {
   host: 'sytantris.github.io',
-  path: '/http-examples/step3.html'
+  path: '/http-examples/step4.html'
 };
-getAndPrintHTML(requestOptions)
+
+getHTML(requestOptions, printHTML)
